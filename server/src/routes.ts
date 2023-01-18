@@ -1,8 +1,8 @@
 // rotas da api
 import { FastifyInstance } from "fastify"// tipo
 import { prisma } from "./lib/prisma"
-import {z} from 'zod'
-import dayjs from 'dayjs'
+import {z} from 'zod'// para validação
+import dayjs from 'dayjs'// utilitario de datas
 export async function appRoutes(app: FastifyInstance){
     app.get('/hello', ()=>{
         return 'Hello NLW!'
@@ -36,7 +36,5 @@ export async function appRoutes(app: FastifyInstance){
                 }
             }
         })
-
-
     })
 }
