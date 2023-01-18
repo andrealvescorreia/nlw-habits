@@ -13,6 +13,54 @@ export async function appRoutes(app: FastifyInstance){
         return habits
     })
 
+    app.get('/day', async (request)=>{
+        const getDayParams = z.object({
+            date: z.coerce.date()
+        })
+
+        const { date } = getDayParams.parse(request.query)
+        
+        const parsedDate = dayjs(date).startOf('day')
+        const weekDay = dayjs(date).get('day')
+
+        // t0dos os habitos possiveis (que existiam desde aquele dia)
+        // habitos que foram completados (naquele dia)
+
+        const possibleHabits = await prisma.habit.findMany({
+            where: {
+                created_at:{
+                    lte: date
+                },
+                weekDays: {
+                    some: {
+                        week_day: weekDay
+                    }
+                }
+            }
+        })
+
+
+        const day = await prisma.day.findUnique({
+            where: {
+                date: parsedDate.toDate()
+            },
+            include: {
+                dayHabits: true// inclui os habitos 
+            }
+        })
+
+        // o operador "?" verifica antes se o 'day' é nulo. Se não, pega os 'dayHabits'
+        const completedHabits = day?.dayHabits.map(dayHabit => {
+            return dayHabit.habit_id
+        })     
+
+        return {
+            possibleHabits,
+            completedHabits
+        }
+
+    })
+
     app.post('/habits', async (request)=>{
         const createHabitBody = z.object({// serve para validar o body passado pela request
             title: z.string(),
