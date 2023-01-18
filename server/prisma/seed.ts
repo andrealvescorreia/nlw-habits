@@ -1,3 +1,6 @@
+//npx prisma db seed (popular o banco de dados)
+//npx prisma studio (visualizar o banco)
+
 // seed serve para popular o banco para que vc teste ele.
 // https://www.prisma.io/docs/guides/database/seed-database
 
