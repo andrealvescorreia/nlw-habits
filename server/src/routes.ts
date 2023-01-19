@@ -7,11 +7,7 @@ export async function appRoutes(app: FastifyInstance){
     app.get('/hello', ()=>{
         return 'Hello NLW!'
     })
-    
-    app.get('/habits', async ()=>{
-        const habits = await prisma.habit.findMany()
-        return habits
-    })
+
 
     app.get('/day', async (request)=>{
         const getDayParams = z.object({
@@ -61,6 +57,7 @@ export async function appRoutes(app: FastifyInstance){
 
     })
 
+    
     app.post('/habits', async (request)=>{
         const createHabitBody = z.object({// serve para validar o body passado pela request
             title: z.string(),
@@ -85,4 +82,59 @@ export async function appRoutes(app: FastifyInstance){
             }
         })
     })
+
+    app.patch('/habits/:id/toggle', async (request) =>{
+        const toggleHabitParams = z.object({
+            id: z.string().uuid()// verfifica se o id passado é do formato uuid
+        })
+
+
+        const {id} = toggleHabitParams.parse(request.params)
+
+        const today = dayjs().startOf('day').toDate()// data de hj com horas, minutos e seg zerados
+
+        let day = await prisma.day.findUnique({
+            where: {
+                date: today
+            }
+        })
+
+        if(!day){// se day for nulo: nao existia nenhum habito completado naquele dia,
+            // entao cria esse dia!
+            day = await prisma.day.create({
+                data: {
+                    date: today
+                }
+            })
+        }
+
+        const dayHabit = await prisma.dayHabit.findUnique({
+            where: {
+                day_id_habit_id: {
+                    day_id: day.id,
+                    habit_id: id
+                }
+            }
+        })
+
+        if (dayHabit) {
+            // toggle: desmarca o habito como completo
+            await prisma.dayHabit.delete({
+                where: {
+                    id: dayHabit.id
+                }
+            })
+        } else{
+            // toggle: marca o habito como completo
+            await prisma.dayHabit.create({
+                data: {
+                    day_id: day.id,
+                    habit_id: id
+                }
+            })
+        }
+
+
+    })
+
 }
