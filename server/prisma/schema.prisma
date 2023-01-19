@@ -43,7 +43,9 @@ model Day {
   @@map("days")
 }
 
-// tabela que nasce do relacionamento muitos para muitos entre Day e Habit
+// tabela que nasce do relacionamento muitos para muitos entre Day e Habit.
+// Um dado habito só foi completo em um dado dia, se a relação entre os dois = existir nessa tabela.
+// Caso o registro nao exista, significa que nao foi completado.
 model DayHabit {
   id String @id @default(uuid())
 
