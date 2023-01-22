@@ -48,9 +48,9 @@ async function run() {
             created_at: secondHabitCreationDate,
             weekDays: {
                create: [
-                  { week_day: 3 },
-                  { week_day: 4 },
-                  { week_day: 5 },
+                  { week_day: 3 },// quarta feira
+                  { week_day: 4 },// quinta feira
+                  { week_day: 5 },// sexta feira
                ]
             }
          }
@@ -91,7 +91,7 @@ async function run() {
       }),
 
       /**
-       * Habits (Complete/Available): 1/1
+       * Habits (Complete/Available): 1/1 
        */
       prisma.day.create({
          data: {
@@ -99,7 +99,7 @@ async function run() {
             date: new Date('2023-01-06T03:00:00.000z'),
             dayHabits: {
                create: {
-                  habit_id: firstHabitId,
+                  habit_id: secondHabitId,
                }
             }
          }
