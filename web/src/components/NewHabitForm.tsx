@@ -83,7 +83,7 @@ export function NewHabitForm() {
                      }}
                   >
                      <div
-                        className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 
+                        className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 transition-all 
                                         group-data-[state=checked]:bg-green-500 group-data-[state=checked]:border-green-500'
                      >
 
@@ -104,7 +104,7 @@ export function NewHabitForm() {
 
          </div>
 
-         <button className="mt-4 p-4 flex items-center justify-center font-semibold bg-green-600  rounded-lg hover:bg-green-500">
+         <button className="mt-4 p-4 flex items-center justify-center font-semibold bg-green-600  rounded-lg hover:bg-green-500 transition-colors">
             <Check size={20} weight="bold" />
             Confirmar
          </button>

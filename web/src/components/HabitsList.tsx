@@ -74,7 +74,7 @@ export function HabitsList({ date, onCompletedChanged }: HabitsListProps) {
                   // Nesse caso queremos o 'data-state' em específico, pois ele indica se o checkbox está "checked" ou "unchecked".
                >
                   <div /* quadradinho do checkbox*/
-                     className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 
+                     className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 transition-all
                              group-data-[state=checked]:bg-green-500 group-data-[state=checked]:border-green-500'//quando "checked", fundo verde
                   >
                      <Checkbox.Indicator /* (marcado)*/ >
