@@ -61,7 +61,8 @@ export function NewHabitForm() {
             id="title"
             placeholder="ex.: Exercicios, Dormir 8hrs, etc..."
             autoFocus
-            className="rounded-lg p-4 mt-3 bg-zinc-800 text-white placeholder:text-zinc-400"
+            className="rounded-lg p-4 mt-3 bg-zinc-800 text-white placeholder:text-zinc-400 
+                       focus:ring-2 focus:ring-violet-600 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:outline-none"
             value={title}
             onChange={event => setTitle(event.target.value)}
          />
@@ -75,7 +76,7 @@ export function NewHabitForm() {
             {daysOfTheWeek.map((weekDay, index) => {
                return (
                   <Checkbox.Root
-                     className='flex items-center gap-3 group'
+                     className='flex items-center gap-3 group focus:outline-none'
                      key={weekDay}
                      checked={weekDays.includes(index)}
                      onCheckedChange={() => {
@@ -84,9 +85,9 @@ export function NewHabitForm() {
                   >
                      <div
                         className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 transition-all 
-                                        group-data-[state=checked]:bg-green-500 group-data-[state=checked]:border-green-500'
+                                 group-data-[state=checked]:bg-green-500 group-data-[state=checked]:border-green-500
+                                  group-focus:ring-2 group-focus:ring-violet-600 group-focus:ring-offset-2 group-focus:ring-offset-background'
                      >
-
                         <Checkbox.Indicator>
                            <Check size={20} className="text-white" />
                         </Checkbox.Indicator>
@@ -104,7 +105,8 @@ export function NewHabitForm() {
 
          </div>
 
-         <button className="mt-4 p-4 flex items-center justify-center font-semibold bg-green-600  rounded-lg hover:bg-green-500 transition-colors">
+         <button className="mt-4 p-4 flex items-center justify-center font-semibold bg-green-600  rounded-lg hover:bg-green-500 transition-colors
+                            focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:outline-none">
             <Check size={20} weight="bold" />
             Confirmar
          </button>

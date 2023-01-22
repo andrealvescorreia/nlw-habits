@@ -12,10 +12,11 @@ export function Header(){
             <Dialog.Root>
 
                 <Dialog.Trigger 
-                    type="button"
-                    className='border border-violet-500 font-semibold flex items-center gap-3 rounded-lg px-6 py-4 hover:border-violet-300 transition-colors' // px-6 é o padding horizontal (eixo x) de 6x4 = 24pixels. py-4 é padding lateral (eixo y) de 4x4 = 16pixels
+                    type="button" // px-6 é o padding horizontal (eixo x) de 6x4 = 24pixels. py-4 é padding lateral (eixo y) de 4x4 = 16pixels
+                    className='border border-violet-500 font-semibold flex items-center gap-3 rounded-lg px-6 py-4 hover:border-violet-300 transition-colors
+                               focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2 focus:ring-offset-background ' // focus serve para usuários de leitores de tela (navegação por tab)
                 >
-                    <Plus size={20} className="text-violet-500" />
+                    <Plus size={20} className="text-violet-500 " />
                     Novo hábito
                 </Dialog.Trigger>
 
@@ -27,7 +28,8 @@ export function Header(){
                         
                         
 
-                        <Dialog.Close className='absolute right-6 text-zinc-400 hover:text-zinc-200'>
+                        <Dialog.Close className='absolute right-6 text-zinc-400 hover:text-zinc-200 rounded-lg
+                                                 focus:ring-2 focus:ring-violet-600 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:outline-none'>
                             <X size={24} aria-label="Fechar"></X>
                         </Dialog.Close>
                         
