@@ -48,7 +48,7 @@ export async function appRoutes(app: FastifyInstance){
         // o operador "?" verifica antes se o 'day' é nulo. Se não, pega os 'dayHabits'
         const completedHabits = day?.dayHabits.map(dayHabit => {
             return dayHabit.habit_id
-        })     
+        }) ?? []
 
         return {
             possibleHabits,
