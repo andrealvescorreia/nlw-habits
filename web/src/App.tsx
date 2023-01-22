@@ -1,8 +1,5 @@
 import './styles/global.css'
-import {Plus} from 'phosphor-react'// icone de +
-//import { Habit } from './components/Habit'
-
-import logoImage from './assets/logo.svg'
+import './lib/dayjs'
 import { Header } from './components/Header'
 import { SummaryTable } from './components/SummaryTable'
 
